@@ -6,6 +6,11 @@
 
 @section('actions')
     @if (auth()->user()->role === 'admin')
+        <form class="import-form" action="{{ route('participants.import') }}" method="POST" enctype="multipart/form-data">
+            @csrf
+            <label class="btn" for="participants-file">Importer CSV</label>
+            <input class="visually-hidden" id="participants-file" name="file" type="file" accept=".csv,text/csv" required onchange="this.form.submit()">
+        </form>
         <a class="btn btn--primary" href="{{ route('participants.create') }}">Ajouter un élève</a>
     @endif
 @endsection
@@ -19,6 +24,19 @@
     @if (session('success'))
         <div class="alert alert--success" role="status">{{ session('success') }}</div>
     @endif
+
+    @if ($errors->has('file'))
+        <div class="alert alert--error" role="alert">{{ $errors->first('file') }}</div>
+    @endif
+
+    <form class="search-form" method="GET" action="{{ route('participants.index') }}" role="search">
+        <label class="visually-hidden" for="participant-search">Rechercher un participant</label>
+        <input class="input" id="participant-search" name="q" type="search" value="{{ $search }}" placeholder="Rechercher un participant...">
+        <button class="btn btn--primary" type="submit">Rechercher</button>
+        @if ($search !== '')
+            <a class="btn" href="{{ route('participants.index') }}">Effacer</a>
+        @endif
+    </form>
 
     <div class="table-wrap">
         <table class="table participants-table">

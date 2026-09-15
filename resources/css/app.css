@@ -1,3 +1,8 @@
+.alert--error {
+    background: color-mix(in srgb, var(--danger) 12%, white);
+    border-color: color-mix(in srgb, var(--danger) 30%, white);
+    color: var(--danger);
+}
 @import 'tailwindcss';
 
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
@@ -338,6 +343,11 @@ form .field:last-of-type {
     background: var(--brand-cream);
 }
 
+.alert--error {
+    border-color: var(--brand-coral);
+    background: #fff4f3;
+}
+
 .alert ul {
     margin: 0;
     padding-left: 18px;
@@ -665,6 +675,26 @@ form .field:last-of-type {
     margin-bottom: 40px;
 }
 
+.events-section--archive {
+    border-top: var(--border);
+    padding-top: 30px;
+}
+
+.event-card--archived {
+    opacity: 0.72;
+}
+
+.search-form {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 32px;
+}
+
+.search-form .input {
+    width: min(100%, 420px);
+}
+
 .events-section__more {
     margin-top: 22px;
 }
@@ -736,6 +766,22 @@ form .field:last-of-type {
     align-items: center;
     gap: 14px;
     white-space: nowrap;
+}
+
+.admin-users {
+    margin-top: 42px;
+}
+
+.user-role-form {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-width: 255px;
+}
+
+.user-role-form .input {
+    min-width: 145px;
+    padding: 8px 10px;
 }
 
 .text-btn {

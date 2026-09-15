@@ -6,6 +6,7 @@ use App\Models\Event;
 use App\Models\Student;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Carbon;
 use Tests\TestCase;
 
 class EventTest extends TestCase
@@ -23,7 +24,7 @@ class EventTest extends TestCase
     public function test_guests_do_not_see_or_access_event_creation(): void
     {
         $this->get('/')
-            ->assertOk()
+            ->assertRedirect(route('auth.login'))
             ->assertDontSee('Nouvel événement');
 
         $this->get(route('events.create'))
@@ -81,7 +82,8 @@ class EventTest extends TestCase
 
         $user = User::factory()->create(['role' => 'user']);
 
-        $this->get('/')
+        $this->actingAs($user)
+            ->get('/')
             ->assertOk()
             ->assertSee('Événement 1')
             ->assertSee('Événement 3')
@@ -92,5 +94,46 @@ class EventTest extends TestCase
             ->get(route('events.index'))
             ->assertOk()
             ->assertSee('Événement 4');
+    }
+
+    public function test_event_list_separates_archived_events_and_shows_participant_count(): void
+    {
+        $pastEvent = Event::create([
+            'name' => 'Événement terminé',
+            'color' => '#f7521c',
+            'event_date' => Carbon::yesterday()->format('Y-m-d'),
+        ]);
+        $futureEvent = Event::create([
+            'name' => 'Événement à venir',
+            'color' => '#f7521c',
+            'event_date' => Carbon::tomorrow()->format('Y-m-d'),
+        ]);
+        $pastEvent->students()->attach(Student::create([
+            'first_name' => 'Élodie',
+            'last_name' => 'Durand',
+            'email' => 'elodie@example.com',
+            'class_name' => 'B3',
+        ]));
+
+        $this->actingAs(User::factory()->create(['role' => 'user']))
+            ->get(route('events.index'))
+            ->assertOk()
+            ->assertSee('Événements à venir')
+            ->assertSee('Archives')
+            ->assertSee('1 participant(s)')
+            ->assertSee('Événement terminé')
+            ->assertSee('Événement à venir');
+    }
+
+    public function test_event_list_can_be_searched(): void
+    {
+        Event::create(['name' => 'Soirée cinéma', 'color' => '#f7521c', 'event_date' => Carbon::tomorrow()->format('Y-m-d')]);
+        Event::create(['name' => 'Tournoi sportif', 'color' => '#f7521c', 'event_date' => Carbon::tomorrow()->format('Y-m-d')]);
+
+        $this->actingAs(User::factory()->create(['role' => 'user']))
+            ->get(route('events.index', ['q' => 'cinéma']))
+            ->assertOk()
+            ->assertSee('Soirée cinéma')
+            ->assertDontSee('Tournoi sportif');
     }
 }

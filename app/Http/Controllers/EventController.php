@@ -6,14 +6,26 @@ use App\Models\Event;
 use App\Models\Student;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\View\View;
 
 class EventController extends Controller
 {
-    public function index(): View
+    public function index(Request $request): View
     {
+        $search = trim((string) $request->query('q', ''));
+        $query = Event::query()->withCount('students')->orderBy('event_date');
+
+        if ($search !== '') {
+            $query->where('name', 'like', '%'.$search.'%');
+        }
+
+        $events = $query->get();
+
         return view('events.index', [
-            'events' => Event::query()->orderBy('event_date')->get(),
+            'upcomingEvents' => $events->filter(fn (Event $event): bool => ! $event->event_date->isBefore(Carbon::today()))->values(),
+            'archivedEvents' => $events->filter(fn (Event $event): bool => $event->event_date->isBefore(Carbon::today()))->sortByDesc('event_date')->values(),
+            'search' => $search,
         ]);
     }
 

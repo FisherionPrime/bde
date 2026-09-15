@@ -2,18 +2,13 @@
 
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\ParticipantController;
+use App\Http\Controllers\UserController;
 use App\Models\Event;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
-
-Route::get('/', function () {
-    return view('index', [
-        'events' => Event::query()->orderBy('event_date')->limit(3)->get(),
-    ]);
-})->name('index');
 
 Route::get('/login', function () {
     return view('auth.login');
@@ -71,6 +66,12 @@ Route::post('/register', function (Request $request) {
 })->name('auth.register.store');
 
 Route::middleware('auth')->group(function () {
+    Route::get('/', function () {
+        return view('index', [
+            'events' => Event::query()->orderBy('event_date')->limit(3)->get(),
+        ]);
+    })->name('index');
+
     Route::get('/participants', [ParticipantController::class, 'index'])->name('participants.index');
     Route::get('/participants/export', [ParticipantController::class, 'exportPdf'])->name('participants.export');
     Route::get('/evenements', [EventController::class, 'index'])->name('events.index');
@@ -85,10 +86,11 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/participants/nouveau', [ParticipantController::class, 'create'])->name('participants.create');
     Route::post('/participants', [ParticipantController::class, 'store'])->name('participants.store');
     Route::get('/participants/{participant}/modifier', [ParticipantController::class, 'edit'])->name('participants.edit');
+        Route::post('/participants/importer', [ParticipantController::class, 'import'])->name('participants.import');
     Route::put('/participants/{participant}', [ParticipantController::class, 'update'])->name('participants.update');
     Route::delete('/participants/{participant}', [ParticipantController::class, 'destroy'])->name('participants.destroy');
 
-    Route::get('/admin', function () {
-        return view('admin.dashboard');
-    })->name('admin.dashboard');
+    Route::get('/admin', [UserController::class, 'index'])->name('admin.dashboard');
+    Route::patch('/admin/utilisateurs/{user}/role', [UserController::class, 'updateRole'])->name('admin.users.role');
+    Route::delete('/admin/utilisateurs/{user}', [UserController::class, 'destroy'])->name('admin.users.destroy');
 });

@@ -39,4 +39,66 @@
             <a class="card__link" href="{{ route('index') }}#communications">Publier une annonce →</a>
         </article>
     </div>
+
+    @if (session('success'))
+        <div class="alert alert--success" role="status">{{ session('success') }}</div>
+    @endif
+
+    @if ($errors->has('user'))
+        <div class="alert alert--error" role="alert">{{ $errors->first('user') }}</div>
+    @endif
+
+    <section class="admin-users" aria-labelledby="admin-users-title">
+        <div class="section-heading">
+            <h2 class="section-title" id="admin-users-title">Comptes du BDE</h2>
+            <span class="form-help">{{ $users->count() }} compte(s)</span>
+        </div>
+
+        <div class="table-wrap">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Nom</th>
+                        <th>Email</th>
+                        <th>Rôle</th>
+                        <th><span class="visually-hidden">Actions</span></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @forelse ($users as $user)
+                        <tr>
+                            <td>{{ $user->name }}</td>
+                            <td>{{ $user->email }}</td>
+                            <td>
+                                <form class="user-role-form" action="{{ route('admin.users.role', $user) }}" method="POST">
+                                    @csrf
+                                    @method('PATCH')
+                                    <select class="input" name="role" aria-label="Rôle de {{ $user->name }}">
+                                        <option value="user" @selected($user->role === 'user')>Utilisateur</option>
+                                        <option value="admin" @selected($user->role === 'admin')>Administrateur</option>
+                                    </select>
+                                    <button class="btn btn--primary" type="submit">Enregistrer</button>
+                                </form>
+                            </td>
+                            <td class="table__actions">
+                                @if ($user->is(auth()->user()))
+                                    <span class="form-help">Compte actuel</span>
+                                @else
+                                    <form action="{{ route('admin.users.destroy', $user) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button class="text-btn text-btn--danger" type="submit" onclick="return confirm('Supprimer ce compte ?')">Supprimer</button>
+                                    </form>
+                                @endif
+                            </td>
+                        </tr>
+                    @empty
+                        <tr>
+                            <td colspan="4">Aucun compte utilisateur.</td>
+                        </tr>
+                    @endforelse
+                </tbody>
+            </table>
+        </div>
+    </section>
 @endsection
