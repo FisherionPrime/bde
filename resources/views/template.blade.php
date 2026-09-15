@@ -5,24 +5,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>{{ config('app.name', 'BDE') }}</title>
         <style>
-            :root {
-                --bg: #efefef;
-                --primary: #a81260;
-                --primary-2: #457b9d;
-                --accent: #f7a38a;
-                --orange: #f75c1d;
-                --sidebar-bg: #e6a9b4;
-                --deep-plum: #590d6a;
-                --dark-plum: #481076;
-                --soft: #f1f6f8;
-                --card: #ffffff;
-                --muted-accent: #c28188;
-                --text: #000000;
-                --muted: #457b9d;
-                --border: rgba(69, 123, 157, 0.24);
-                --shadow: 0 24px 80px rgba(72, 16, 118, 0.09);
-            }
-
             *,
             *::before,
             *::after {
@@ -33,8 +15,8 @@
                 margin: 0;
                 min-height: 100%;
                 font-family: Arial, Helvetica, sans-serif;
-                background: var(--bg);
-                color: var(--text);
+                background: #fcdda9;
+                color: #2f0f43;
             }
 
             body {
@@ -53,7 +35,7 @@
                 justify-content: space-between;
                 gap: 20px;
                 padding: 18px 26px;
-                border: 1px solid var(--border);
+                border: 1px solid rgba(79, 17, 111, 0.2);
                 background: #ffffff;
                 margin-bottom: 26px;
             }
@@ -74,10 +56,10 @@
                 height: 42px;
                 object-fit: contain;
                 border-radius: 14px;
-                background: var(--sidebar-bg);
-                color: var(--deep-plum);
+                background: #fcdda9;
+                color: #4f116f;
                 font-size: 0.9rem;
-                box-shadow: 0 10px 22px rgba(194, 129, 136, 0.16);
+                box-shadow: 0 10px 22px rgba(229, 41, 71, 0.22);
             }
 
             .topnav {
@@ -91,19 +73,19 @@
                 text-decoration: none;
                 padding: 10px 16px;
                 border-radius: 12px;
-                color: var(--text);
+                color: #2f0f43;
                 font-weight: 600;
                 transition: all 0.2s ease;
             }
 
             .topnav a:hover {
-                background: rgba(69, 123, 157, 0.08);
+                background: rgba(239, 58, 47, 0.12);
             }
 
             .topnav .primary {
-                background: var(--primary);
+                background: #d51f5e;
                 color: #ffffff;
-                box-shadow: 0 10px 24px rgba(168, 18, 96, 0.2);
+                box-shadow: 0 10px 24px rgba(213, 31, 94, 0.28);
             }
 
             .topnav .primary:hover {
@@ -124,9 +106,9 @@
 
             .glass-card {
                 width: min(100%, 940px);
-                background: var(--card);
-                border: 1px solid var(--border);
-                box-shadow: var(--shadow);
+                background: #ffffff;
+                border: 1px solid rgba(79, 17, 111, 0.2);
+                box-shadow: 0 24px 80px rgba(79, 17, 111, 0.12);
                 border-radius: 32px;
                 overflow: hidden;
             }
@@ -139,9 +121,9 @@
             .auth-visual {
                 position: relative;
                 min-height: 680px;
-                background: var(--sidebar-bg);
+                background: linear-gradient(150deg, #fcdda9 0%, #f7521c 35%, #ef3a2f 65%, #e52947 100%);
                 padding: 52px 34px;
-                color: var(--text);
+                color: #2f0f43;
                 display: flex;
                 flex-direction: column;
                 justify-content: space-between;
@@ -151,7 +133,7 @@
                 content: '';
                 position: absolute;
                 inset: 24px;
-                border: 1px solid rgba(247, 92, 29, 0.28);
+                border: 1px solid rgba(247, 82, 28, 0.38);
                 border-radius: 24px;
             }
 
@@ -164,9 +146,9 @@
                 display: inline-block;
                 padding: 8px 12px;
                 border-radius: 999px;
-                background: var(--soft);
-                border: 1px solid rgba(247, 92, 29, 0.24);
-                color: var(--deep-plum);
+                background: #fff6e8;
+                border: 1px solid rgba(247, 82, 28, 0.34);
+                color: #4f116f;
                 font-size: 0.8rem;
                 font-weight: 700;
                 letter-spacing: 0.08em;
@@ -182,7 +164,7 @@
             .lead {
                 font-size: 1.05rem;
                 line-height: 1.75;
-                color: var(--muted);
+                color: #d51f5e;
                 max-width: 420px;
             }
 
@@ -198,7 +180,7 @@
                 border-radius: 18px;
                 padding: 18px 16px;
                 background: rgba(255, 255, 255, 0.72);
-                border: 1px solid rgba(69, 123, 157, 0.24);
+                border: 1px solid rgba(79, 17, 111, 0.2);
             }
 
             .stat strong {
@@ -208,7 +190,7 @@
             }
 
             .auth-form-panel {
-                background: var(--card);
+                background: #ffffff;
                 padding: clamp(24px, 4vw, 52px);
                 display: flex;
                 flex-direction: column;
@@ -228,7 +210,7 @@
 
             .form-wrap p {
                 margin: 0 0 28px;
-                color: var(--muted);
+                color: #d51f5e;
             }
 
             .input-group {
@@ -240,25 +222,25 @@
                 margin-bottom: 8px;
                 font-weight: 700;
                 font-size: 0.92rem;
-                color: var(--text);
+                color: #2f0f43;
             }
 
             .input-field {
                 width: 100%;
                 max-width: 100%;
                 min-width: 0;
-                border: 1px solid rgba(89, 13, 106, 0.28);
+                border: 1px solid rgba(79, 17, 111, 0.3);
                 border-radius: 14px;
                 padding: 14px 16px;
                 font-size: 1rem;
-                background: var(--soft);
+                background: #fff6e8;
                 transition: border-color 0.2s ease, box-shadow 0.2s ease;
             }
 
             .input-field:focus {
                 outline: none;
-                border-color: var(--primary-2);
-                box-shadow: 0 0 0 4px rgba(69, 123, 157, 0.14);
+                border-color: #ef3a2f;
+                box-shadow: 0 0 0 4px rgba(239, 58, 47, 0.2);
             }
 
             .primary-button {
@@ -270,19 +252,19 @@
                 font-size: 1rem;
                 font-weight: 700;
                 color: #fff;
-                background: var(--primary);
-                box-shadow: 0 14px 30px rgba(168, 18, 96, 0.2);
+                background: #d51f5e;
+                box-shadow: 0 14px 30px rgba(213, 31, 94, 0.28);
                 cursor: pointer;
                 transition: transform 0.2s ease, box-shadow 0.2s ease;
             }
 
             .primary-button:hover {
                 transform: translateY(-1px);
-                box-shadow: 0 18px 32px rgba(72, 16, 118, 0.24);
+                box-shadow: 0 18px 32px rgba(79, 17, 111, 0.24);
             }
 
             .text-link {
-                color: var(--primary);
+                color: #d51f5e;
                 font-weight: 700;
                 text-decoration: none;
             }
@@ -294,14 +276,14 @@
             .inline-note {
                 margin-top: 22px;
                 text-align: center;
-                color: var(--muted);
+                color: #d51f5e;
                 font-size: 0.96rem;
             }
 
             .alert-box {
-                background: var(--soft);
-                border: 1px solid rgba(247, 163, 138, 0.65);
-                color: var(--dark-plum);
+                background: #fff6e8;
+                border: 1px solid rgba(229, 41, 71, 0.65);
+                color: #4f116f;
                 border-radius: 14px;
                 padding: 14px 16px;
                 margin-bottom: 18px;

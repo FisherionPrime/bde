@@ -8,8 +8,8 @@
         body {
             font-family: Arial, sans-serif;
             margin: 0;
-            background: #EFEFEF;
-            color: #000000;
+            background: #fcdda9;
+            color: #2f0f43;
         }
         .dashboard-shell {
             position: relative;
@@ -23,14 +23,14 @@
             z-index: 20;
             width: 230px;
             padding: 34px 20px;
-            background: #E6A9B4;
-            color: #481076;
+            background: linear-gradient(180deg, #fcdda9 0%, #f7521c 40%, #ef3a2f 100%);
+            color: #4f116f;
             transform: translateX(-100%);
             transition: transform 0.25s ease;
-            box-shadow: 12px 0 28px rgba(72, 16, 118, 0.12);
+            box-shadow: 12px 0 28px rgba(79, 17, 111, 0.16);
             overflow-y: auto;
         }
-        .dashboard-shell.menu-open .sidebar {
+        .dashboard-shell[data-menu-open='true'] .sidebar {
             transform: translateX(0);
         }
         .menu-toggle {
@@ -43,18 +43,18 @@
             justify-content: center;
             width: 44px;
             height: 44px;
-            border: 1px solid rgba(69, 123, 157, 0.3);
+            border: 1px solid rgba(79, 17, 111, 0.24);
             border-radius: 12px;
             background: #ffffff;
-            color: #481076;
+            color: #4f116f;
             font-size: 1.35rem;
             line-height: 1;
             cursor: pointer;
-            box-shadow: 0 8px 20px rgba(72, 16, 118, 0.1);
+            box-shadow: 0 8px 20px rgba(79, 17, 111, 0.12);
         }
         .menu-toggle:hover,
         .menu-toggle:focus-visible {
-            border-color: #457B9D;
+            border-color: #ef3a2f;
         }
         .menu-backdrop {
             position: fixed;
@@ -65,13 +65,13 @@
             background: rgba(0, 0, 0, 0.22);
             cursor: pointer;
         }
-        .dashboard-shell:not(.menu-open) .menu-backdrop {
+        .dashboard-shell[data-menu-open='false'] .menu-backdrop {
             display: none;
         }
         .sidebar-brand {
             display: block;
             margin-bottom: 46px;
-            color: #000000;
+            color: #2f0f43;
             font-size: 1.1rem;
             font-weight: 700;
             text-decoration: none;
@@ -84,7 +84,7 @@
         .sidebar-nav button {
             padding: 11px 13px;
             border-radius: 10px;
-            color: #000000;
+            color: #2f0f43;
             font-size: 0.95rem;
             font-weight: 600;
             text-decoration: none;
@@ -99,8 +99,8 @@
         .sidebar-nav a:hover,
         .sidebar-nav a[aria-current="page"],
         .sidebar-nav button:hover {
-            background: rgba(69, 123, 157, 0.16);
-            color: #481076;
+            background: rgba(239, 58, 47, 0.18);
+            color: #4f116f;
         }
         .wrap {
             min-width: 0;
@@ -108,11 +108,11 @@
         }
         .hero {
             background: #ffffff;
-            color: #481076;
+            color: #4f116f;
             border-radius: 28px;
             padding: 42px 32px;
-            border: 1px solid rgba(69, 123, 157, 0.3);
-            box-shadow: 0 20px 50px rgba(72, 16, 118, 0.1);
+            border: 1px solid rgba(79, 17, 111, 0.24);
+            box-shadow: 0 20px 50px rgba(79, 17, 111, 0.12);
         }
         .hero h1 {
             font-size: clamp(2rem, 4vw, 3.2rem);
@@ -123,7 +123,7 @@
             line-height: 1.7;
             margin: 0;
             max-width: 700px;
-            color: #457B9D;
+            color: #d51f5e;
         }
         .cards {
             margin-top: 32px;
@@ -134,29 +134,29 @@
         }
         .card {
             background: #ffffff;
-            border: 1px solid rgba(69, 123, 157, 0.25);
+            border: 1px solid rgba(79, 17, 111, 0.24);
             border-radius: 22px;
             padding: 24px;
-            box-shadow: 0 15px 30px rgba(72, 16, 118, 0.08);
+            box-shadow: 0 15px 30px rgba(79, 17, 111, 0.1);
         }
         .card h3 {
             margin-top: 0;
             font-size: 1.1rem;
         }
         .card:nth-child(1) {
-            border-top: 4px solid #F75C1D;
+            border-top: 4px solid #f7521c;
         }
         .card:nth-child(2) {
-            border-top: 4px solid #457B9D;
+            border-top: 4px solid #e52947;
         }
         .card:nth-child(3) {
-            border-top: 4px solid #590D6A;
+            border-top: 4px solid #4f116f;
         }
         .badge {
             display: inline-block;
             margin-top: 18px;
-            background: #F7A38A;
-            color: #481076;
+            background: #d51f5e;
+            color: #fff;
             border-radius: 999px;
             padding: 8px 12px;
             font-weight: 700;
@@ -202,7 +202,7 @@
     </style>
 </head>
 <body>
-    <div class="dashboard-shell">
+    <div class="dashboard-shell" data-menu-open="false">
         <button class="menu-toggle" type="button" aria-controls="main-menu" aria-expanded="false" aria-label="Ouvrir le menu">
             <span aria-hidden="true">&#9776;</span>
         </button>
@@ -247,9 +247,9 @@
                     <h3>Événements</h3>
                     <p>Découvre les prochains rendez-vous culturels, sportifs et festifs.</p>
                 </div>
-                <div class="card" id="sorties">
-                    <h3>Sorties</h3>
-                    <p>Organise des soirées, des visites et des challenges entre étudiants.</p>
+                <div class="card" id="participants">
+                    <h3>Participants</h3>
+                    <p>Retrouve les membres, les équipes et les profils actifs de la communauté étudiante.</p>
                 </div>
                 <div class="card" id="communaute">
                     <h3>Communauté</h3>
@@ -266,13 +266,13 @@
             const menuLinks = document.querySelectorAll('.sidebar a, .sidebar button');
 
             const setMenuState = (isOpen) => {
-                shell.classList.toggle('menu-open', isOpen);
+                shell.setAttribute('data-menu-open', isOpen ? 'true' : 'false');
                 toggle.setAttribute('aria-expanded', String(isOpen));
                 toggle.setAttribute('aria-label', isOpen ? 'Fermer le menu' : 'Ouvrir le menu');
             };
 
             toggle.addEventListener('click', () => {
-                setMenuState(!shell.classList.contains('menu-open'));
+                setMenuState(shell.getAttribute('data-menu-open') !== 'true');
             });
             backdrop.addEventListener('click', () => setMenuState(false));
             menuLinks.forEach((link) => link.addEventListener('click', () => setMenuState(false)));
