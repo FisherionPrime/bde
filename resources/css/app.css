@@ -660,8 +660,13 @@ form .field:last-of-type {
         flex-direction: column;
     }
 
+    .app-header__actions {
+        width: 100%;
+    }
+
     .app-header__menu {
         display: inline-flex;
+        margin-right: auto;
     }
 
     :root[data-sidebar='open'] .sidebar__backdrop {
