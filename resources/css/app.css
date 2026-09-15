@@ -700,12 +700,20 @@ form .field:last-of-type {
     background: var(--brand-cream);
 }
 
+.auth-visual > div:first-child {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
 .auth-visual__title {
     margin: 26px 0 18px;
-    max-width: 14ch;
-    font-size: clamp(2.4rem, 4.4vw, 3.8rem);
-    line-height: 0.96;
-    letter-spacing: -0.035em;
+    max-width: 11ch;
+    font-size: clamp(2.6rem, 4.1vw, 4.1rem);
+    line-height: 0.94;
+    letter-spacing: -0.04em;
 }
 
 .auth-visual__lead {

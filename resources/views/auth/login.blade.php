@@ -16,7 +16,7 @@
         <span>étudiants</span>
     </div>
     <div class="stat">
-        <strong>67h</strong>
+        <strong>24h</strong>
         <span>de réponses</span>
     </div>
 @endsection
