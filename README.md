@@ -1,58 +1,248 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Educia BDE - Plateforme de Gestion et d'Animation Etudiante
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Plateforme web de gestion et d'animation de la vie etudiante developpee pour le Bureau des Eleves (BDE) de Skolae Toulon. L'application permet de centraliser les informations du campus, d'annoncer les evenements et sorties, et de fournir un espace dedie aux gestionnaires du BDE.
 
-## About Laravel
+---
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Sommaire
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- Presentation
+- Fonctionnalites principales
+- Architecture et Technologies
+- Prerequis
+- Installation et Configuration
+- Execution de l'application
+- Structure du projet
+- Qualite de code et Tests
+- Securite
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+---
 
-## Learning Laravel
+## Presentation
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+Educia BDE est une solution concue pour dynamiser la vie associative et faciliter la gestion des projets du bde au sein de l'ecole. Elle offre une interface fluide, responsive et adaptee aux differents terminaux (ordinateurs, tablettes, smartphones), en bref un acces reserve aux membres authentifies.
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+---
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+## Fonctionnalites principales
 
-## Agentic Development
+### Authentification et Gestion des acces
+- Inscription securisee des etudiants avec verification des donnees et confirmation du mot de passe.
+- Connexion securisee avec hachage Bcrypt des identifiants.
+- Gestion de session applicative stockee en base de donnees.
+- Deconnexion securisee avec reinitialisation de la session.
 
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+### Navigation et Interface
+- Disposition ergonomique avec menu lateral retractable (off-canvas) adapte au mobile et desktop.
+- Tableau de bord centralisant les activites et le statut de connexion de l'utilisateur.
+- Identite visuelle personnalisee aux couleurs de l'association.
+
+### Modules de la vie etudiante
+- Evenements : Presentation et suivi des rendez-vous culturels, sportifs et festifs du campus.
+- Sorties : Coordination des activites et rencontres inter-etudiants.
+- Communaute : Espace d'information et d'initiatives associatives.
+
+---
+
+## Architecture et Technologies
+
+### Backend
+- Langage : PHP 8.3+ / PHP 8.4
+- Framework : Laravel 13
+- ORM / Acces aux donnees : Eloquent ORM et Query Builder Laravel
+- Gestion des sessions et du cache : Base de donnees (MySQL)
+
+### Frontend
+- Moteur de template : Laravel Blade
+- Styles : CSS3 personnalise avec variables de themes et integration Tailwind CSS
+- Bundler et outillage : Vite 6+ / Vite 8, Node.js
+
+### Base de donnees
+- SGBD : MySQL 8.x / MariaDB
+- Support des migrations Laravel et script SQL initial (`bdd.sql`)
+
+### Outils de developpement et qualite
+- Laravel Pint : Formatage du code PHP respectant les standards PSR-12 / Laravel
+- PHPUnit : Suite de tests unitaires et fonctionnels
+- Laravel Boost / Pao / Pail : Environnement ameliore de developpement et de debogage
+
+---
+
+## Prerequis
+
+Avant d'installer l'application, assurez-vous de disposer des outils suivants sur votre environnement de developpement :
+
+- PHP >= 8.3 (avec extensions : `pdo_mysql`, `mbstring`, `openssl`, `tokenizer`, `xml`, `ctype`, `json`)
+- Composer >= 2.x
+- Node.js >= 18.x et gestionnaire de paquets `npm`
+- Serveur MySQL >= 8.0 ou MariaDB >= 10.4 (WampServer, Laragon, Docker ou installation native)
+
+---
+
+## Installation et Configuration
+
+### 1. Clonage du depot
+
+Recuperez les sources du projet sur votre machine locale :
 
 ```bash
-composer require laravel/boost --dev
-
-php artisan boost:install
+git clone <url-du-depot>
+cd bde
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+### 2. Installation des dependances
 
-## Contributing
+Installez les dependances PHP via Composer :
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+```bash
+composer install
+```
 
-## Code of Conduct
+Installez les dependances JavaScript / CSS via npm :
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+```bash
+npm install
+```
 
-## Security Vulnerabilities
+### 3. Configuration des variables d'environnement
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Copiez le fichier d'exemple pour creer votre fichier `.env` :
 
-## License
+Sous Windows (PowerShell / CMD) :
+```cmd
+copy .env.example .env
+```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Sous Linux / macOS :
+```bash
+cp .env.example .env
+```
+
+Generez la cle de chiffrement de l'application :
+
+```bash
+php artisan key:generate
+```
+
+### 4. Configuration de la base de donnees
+
+Modifiez les parametres de connexion dans le fichier `.env` pour cibler votre base MySQL :
+
+```env
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=bde
+DB_USERNAME=root
+DB_PASSWORD=
+```
+
+Creez la base de donnees `bde` sur votre serveur MySQL, puis appliquez la structure :
+
+Option A - Via les migrations Laravel :
+```bash
+php artisan migrate
+```
+
+Option B - Via l'import du dump fourni (`bdd.sql`) :
+```bash
+mysql -u root -p bde < bdd.sql
+```
+
+---
+
+## Execution de l'application
+
+### Mode Developpement
+
+Pour executer simultanement le serveur applicatif PHP et le serveur de compilation d'actifs Vite, lancez la commande globale :
+
+```bash
+composer run dev
+```
+
+Ou separement dans deux terminaux :
+
+Terminal 1 (Backend PHP) :
+```bash
+php artisan serve
+```
+
+Terminal 2 (Compilation a chaud Vite) :
+```bash
+npm run dev
+```
+
+L'application sera accessible a l'adresse : `http://localhost:8000` (ou `http://127.0.0.1:8000`).
+
+### Mode Production (Compilation des actifs)
+
+Pour construire les fichiers CSS et JavaScript optimises pour la production :
+
+```bash
+npm run build
+```
+
+---
+
+## Structure du projet
+
+Apercu des dossiers cles du projet :
+
+```text
+bde/
+|-- app/
+|   |-- Http/
+|   |   `-- Controllers/       # Controleurs applicatifs
+|   |-- Models/                # Modeles Eloquent (User, etc.)
+|   `-- Providers/             # Fournisseurs de services Laravel
+|-- config/                    # Fichiers de configuration de l'application
+|-- database/
+|   |-- factories/             # Fabriques pour les jeux d'essai
+|   |-- migrations/            # Historique des migrations du schema de donnees
+|   `-- seeders/               # Remplissage initial de la base de donnees
+|-- public/
+|   |-- images/                # Actifs statiques et logos
+|   `-- index.php              # Point d'entree HTTP public
+|-- resources/
+|   |-- css/                   # Feuilles de style et Tailwind CSS
+|   |-- js/                    # Scripts JavaScript client
+|   `-- views/                 # Vues et templates Blade
+|       |-- auth/              # Vues de connexion et inscription
+|       |-- index.blade.php    # Tableau de bord principal
+|       `-- template.blade.php # Layout structurel partage
+|-- routes/
+|   |-- console.php            # Commandes console Artisan
+|   `-- web.php                # Routes web de l'application
+|-- tests/                     # Tests automatises Unit et Feature
+|-- bdd.sql                    # Dump SQL initial du schema
+`-- composer.json              # Definitions des dependances PHP
+```
+
+---
+
+## Qualite de code et Tests
+
+### Execution des tests automatises
+
+Le projet est equipe d'une suite de tests PHPUnit. Pour executer les tests :
+
+```bash
+php artisan test
+```
+
+### Standardisation du code (Pint)
+
+Le style du code PHP est normalise avec Laravel Pint. Pour corriger automatiquement les ecarts de style :
+
+```bash
+vendor/bin/pint
+```
+
+---
+
+## Securite
+
+- Hachage des mots de passe : Utilisation native de l'algorithme Bcrypt avec un cout adapte (`BCRYPT_ROUNDS=12`).
+- Gestion des sessions : Stockage securise des sessions en base de donnees avec identifiant unique et delai d'expiration.
+- Validation des donnees : Verification stricte des champs lors de la creation de compte et de l'authentification.
