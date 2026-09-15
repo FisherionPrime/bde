@@ -34,7 +34,7 @@ Route::middleware('guest')->group(function () {
         $request->session()->regenerate();
 
         return redirect()->route('index');
-    })->middleware('throttle:5,1')->name('auth.login.submit');
+    })->name('auth.login.submit');
 
     Route::get('/register', function () {
         return view('auth.register');

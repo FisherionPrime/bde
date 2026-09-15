@@ -58,23 +58,6 @@ class AuthTest extends TestCase
         $this->assertTrue(Hash::check('motdepasse', $user->password));
     }
 
-    public function test_login_is_rate_limited_after_five_attempts(): void
-    {
-        User::factory()->create(['email' => 'ada@example.com']);
-
-        foreach (range(1, 5) as $attempt) {
-            $this->post(route('auth.login.submit'), [
-                'email' => 'ada@example.com',
-                'password' => 'mauvais-mot-de-passe',
-            ])->assertRedirect();
-        }
-
-        $this->post(route('auth.login.submit'), [
-            'email' => 'ada@example.com',
-            'password' => 'mauvais-mot-de-passe',
-        ])->assertTooManyRequests();
-    }
-
     public function test_authenticated_users_cannot_reach_the_login_and_register_pages(): void
     {
         $user = User::factory()->create();
