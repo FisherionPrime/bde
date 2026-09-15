@@ -3,12 +3,21 @@
 @section('titre', 'Accueil — Educia BDE')
 
 @section('actions')
-    <button class="btn" type="button">Exporter</button>
-    @auth
-        @if (auth()->user()->role === 'admin')
-            <a class="btn btn--primary" href="{{ route('events.create') }}">Nouvel événement</a>
-        @endif
-    @endauth
+    <button class="btn btn--icon" type="button" aria-label="Importer des listes d'étudiants" title="Importer des listes d'étudiants">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 3v12"></path>
+            <path d="M7 10l5 5 5-5"></path>
+            <path d="M4 21h16"></path>
+        </svg>
+    </button>
+    <button class="btn btn--icon" type="button" aria-label="Exporter des listes d'étudiants" title="Exporter des listes d'étudiants">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 21V9"></path>
+            <path d="M7 14l5-5 5 5"></path>
+            <path d="M4 3h16"></path>
+        </svg>
+    </button>
+    <button class="btn btn--primary" type="button">Nouvel événement</button>
 @endsection
 
 @section('contenu')
