@@ -42,7 +42,9 @@ class AuthTest extends TestCase
         $this->post(route('auth.register.store'), $this->registrationPayload([
             'password' => 'court',
             'password_confirmation' => 'court',
-        ]))->assertSessionHasErrors('password');
+        ]))->assertSessionHasErrors([
+            'password' => 'Le mot de passe doit contenir au moins 8 caractères.',
+        ]);
 
         $this->assertDatabaseMissing('users', ['email' => 'ada@example.com']);
     }
