@@ -859,6 +859,7 @@ form .field:last-of-type {
 
     .app-header__menu {
         display: inline-flex;
+        order: -1;
         margin-right: auto;
     }
 
