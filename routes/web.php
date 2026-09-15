@@ -9,23 +9,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('index', [
-        'events' => Event::query()->orderBy('event_date')->limit(3)->get(),
-    ]);
-})->name('index');
-
-Route::get('/login', function () {
-    return view('auth.login');
-})->name('auth.login');
-
-Route::post('/logout', function () {
-    Auth::logout();
-    request()->session()->invalidate();
-    request()->session()->regenerateToken();
-
-    return redirect()->route('auth.login');
-})->name('auth.logout');
+Route::middleware('guest')->group(function () {
+    Route::get('/login', function () {
+        return view('auth.login');
+    })->name('auth.login');
 
     Route::post('/login', function (Request $request) {
         $request->validate([
@@ -100,7 +87,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/participants/nouveau', [ParticipantController::class, 'create'])->name('participants.create');
     Route::post('/participants', [ParticipantController::class, 'store'])->name('participants.store');
     Route::get('/participants/{participant}/modifier', [ParticipantController::class, 'edit'])->name('participants.edit');
-        Route::post('/participants/importer', [ParticipantController::class, 'import'])->name('participants.import');
+    Route::post('/participants/importer', [ParticipantController::class, 'import'])->name('participants.import');
     Route::put('/participants/{participant}', [ParticipantController::class, 'update'])->name('participants.update');
     Route::delete('/participants/{participant}', [ParticipantController::class, 'destroy'])->name('participants.destroy');
 
