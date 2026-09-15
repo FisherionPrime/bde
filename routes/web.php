@@ -62,6 +62,6 @@ Route::post('/register', function (Request $request) {
 
 Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/admin', function () {
-        return 'Espace administrateur';
+        return view('admin.dashboard');
     })->name('admin.dashboard');
 });

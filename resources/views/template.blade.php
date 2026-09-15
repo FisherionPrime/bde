@@ -413,11 +413,6 @@
                     <img src="{{ asset('images/logo.png') }}" alt="Logo" class="brand-mark">
                     <span>Educia BDE</span>
                 </div>
-
-                <nav class="topnav">
-                    <a href="{{ route('auth.login') }}">Connexion</a>
-                    <a href="{{ route('auth.register') }}">Inscription</a>
-                </nav>
             </header>
 
             <main class="content-wrap">
