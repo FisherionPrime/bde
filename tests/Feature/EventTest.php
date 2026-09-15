@@ -19,6 +19,17 @@ class EventTest extends TestCase
             ->assertDontSee('Nouvel événement');
     }
 
+    public function test_guests_do_not_see_or_access_event_creation(): void
+    {
+        $this->get('/')
+            ->assertOk()
+            ->assertDontSee('Nouvel événement');
+
+        $this->get(route('events.create'))
+            ->assertRedirect(route('auth.login'))
+            ->assertSessionHas('url.intended', route('events.create'));
+    }
+
     public function test_admin_can_create_an_event(): void
     {
         $admin = User::factory()->create(['role' => 'admin']);
@@ -27,6 +38,11 @@ class EventTest extends TestCase
             ->get(route('events.create'))
             ->assertOk()
             ->assertSee('Créer un événement');
+
+        $this->actingAs($admin)
+            ->get(route('index'))
+            ->assertOk()
+            ->assertSee(route('events.create'));
 
         $this->actingAs($admin)
             ->post(route('events.store'), [

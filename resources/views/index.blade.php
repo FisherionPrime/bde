@@ -17,7 +17,11 @@
             <path d="M4 3h16"></path>
         </svg>
     </button>
-    <button class="btn btn--primary" type="button">Nouvel événement</button>
+    @auth
+        @if (auth()->user()->role === 'admin')
+            <a class="btn btn--primary" href="{{ route('events.create') }}">Nouvel événement</a>
+        @endif
+    @endauth
 @endsection
 
 @section('contenu')
