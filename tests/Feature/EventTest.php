@@ -68,4 +68,29 @@ class EventTest extends TestCase
         $this->assertSame('2026-10-01', $event->event_date->format('Y-m-d'));
         $this->assertTrue($event->students->contains($student));
     }
+
+    public function test_homepage_shows_three_events_and_full_page_shows_all_events(): void
+    {
+        foreach (range(1, 4) as $number) {
+            Event::create([
+                'name' => 'Événement '.$number,
+                'color' => '#f7521c',
+                'event_date' => '2026-10-0'.$number,
+            ]);
+        }
+
+        $user = User::factory()->create(['role' => 'user']);
+
+        $this->get('/')
+            ->assertOk()
+            ->assertSee('Événement 1')
+            ->assertSee('Événement 3')
+            ->assertDontSee('Événement 4')
+            ->assertSee('Voir plus d’événements');
+
+        $this->actingAs($user)
+            ->get(route('events.index'))
+            ->assertOk()
+            ->assertSee('Événement 4');
+    }
 }

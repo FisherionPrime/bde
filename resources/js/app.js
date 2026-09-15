@@ -56,8 +56,32 @@ const bindSidebar = () => {
     });
 };
 
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', bindSidebar);
-} else {
+const bindPasswordToggles = () => {
+    document.querySelectorAll('[data-password-toggle]').forEach((button) => {
+        const input = document.getElementById(button.getAttribute('aria-controls'));
+
+        if (!input) {
+            return;
+        }
+
+        button.addEventListener('click', () => {
+            const visible = input.type === 'text';
+            input.type = visible ? 'password' : 'text';
+            button.setAttribute('aria-label', visible ? 'Afficher le mot de passe' : 'Masquer le mot de passe');
+            button.setAttribute('title', visible ? 'Afficher le mot de passe' : 'Masquer le mot de passe');
+            button.querySelector('[data-password-icon="show"]').hidden = !visible;
+            button.querySelector('[data-password-icon="hide"]').hidden = visible;
+        });
+    });
+};
+
+const bindApp = () => {
     bindSidebar();
+    bindPasswordToggles();
+};
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', bindApp);
+} else {
+    bindApp();
 }

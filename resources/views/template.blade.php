@@ -50,14 +50,12 @@
 
                 <nav class="sidebar__nav">
                     <a href="{{ route('index') }}" @class(['is-active' => request()->routeIs('index')])>Accueil</a>
-                    <a href="{{ route('index') }}#evenements">Événements</a>
+                    <a href="{{ route('events.index') }}" @class(['is-active' => request()->routeIs('events.*')])>Événements</a>
                     @auth
                         <a href="{{ route('participants.index') }}" @class(['is-active' => request()->routeIs('participants.*')])>Participants</a>
                     @else
                         <a href="{{ route('index') }}#participants">Participants</a>
                     @endauth
-                    <a href="{{ route('index') }}#communications">Communications</a>
-
                     @auth
                         @if (auth()->user()->role === 'admin')
                             <a href="{{ route('admin.dashboard') }}" @class(['is-active' => request()->routeIs('admin.*')])>Administration</a>

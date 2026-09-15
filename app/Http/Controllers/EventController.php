@@ -10,6 +10,13 @@ use Illuminate\View\View;
 
 class EventController extends Controller
 {
+    public function index(): View
+    {
+        return view('events.index', [
+            'events' => Event::query()->orderBy('event_date')->get(),
+        ]);
+    }
+
     public function create(): View
     {
         return view('events.create', [

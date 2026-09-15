@@ -281,6 +281,37 @@ form .field:last-of-type {
     box-shadow: 0 0 0 4px rgb(213 31 94 / 0.16);
 }
 
+.input-with-action {
+    position: relative;
+}
+
+.input-with-action .input {
+    padding-right: 52px;
+}
+
+.input-with-action__button {
+    position: absolute;
+    top: 50%;
+    right: 8px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border: 0;
+    border-radius: var(--radius-sm);
+    background: transparent;
+    color: var(--color-neutral-700);
+    cursor: pointer;
+    transform: translateY(-50%);
+}
+
+.input-with-action__button:hover,
+.input-with-action__button:focus-visible {
+    background: var(--brand-cream);
+    color: var(--brand-violet);
+}
+
 .form-note {
     margin-top: 24px;
     font-size: 0.95rem;
@@ -632,6 +663,10 @@ form .field:last-of-type {
 
 .events-section {
     margin-bottom: 40px;
+}
+
+.events-section__more {
+    margin-top: 22px;
 }
 
 .section-heading {

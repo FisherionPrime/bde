@@ -7,6 +7,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\View\View;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class ParticipantController extends Controller
 {
@@ -19,6 +20,20 @@ class ParticipantController extends Controller
                 ->orderBy('first_name')
                 ->get(),
         ]);
+    }
+
+    public function exportPdf()
+    {
+        $participants = Student::query()
+            ->with('events')
+            ->withCount('events')
+            ->orderBy('last_name')
+            ->orderBy('first_name')
+            ->get();
+
+        return Pdf::loadView('participants.pdf', [
+            'participants' => $participants,
+        ])->setPaper('a4', 'landscape')->download('participants-bde.pdf');
     }
 
     public function create(): View

@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('index', [
-        'events' => Event::query()->orderBy('event_date')->get(),
+        'events' => Event::query()->orderBy('event_date')->limit(3)->get(),
     ]);
 })->name('index');
 
@@ -72,6 +72,8 @@ Route::post('/register', function (Request $request) {
 
 Route::middleware('auth')->group(function () {
     Route::get('/participants', [ParticipantController::class, 'index'])->name('participants.index');
+    Route::get('/participants/export', [ParticipantController::class, 'exportPdf'])->name('participants.export');
+    Route::get('/evenements', [EventController::class, 'index'])->name('events.index');
     Route::get('/evenements/{event}', [EventController::class, 'show'])->whereNumber('event')->name('events.show');
 });
 

@@ -3,20 +3,15 @@
 @section('titre', 'Accueil — Educia BDE')
 
 @section('actions')
-    <button class="btn btn--icon" type="button" aria-label="Importer des listes d'étudiants" title="Importer des listes d'étudiants">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M12 3v12"></path>
-            <path d="M7 10l5 5 5-5"></path>
-            <path d="M4 21h16"></path>
-        </svg>
-    </button>
-    <button class="btn btn--icon" type="button" aria-label="Exporter des listes d'étudiants" title="Exporter des listes d'étudiants">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M12 21V9"></path>
-            <path d="M7 14l5-5 5 5"></path>
-            <path d="M4 3h16"></path>
-        </svg>
-    </button>
+    @auth
+        <a class="btn btn--icon" href="{{ route('participants.export') }}" aria-label="Exporter la liste des participants en PDF" title="Exporter la liste des participants en PDF">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M12 21V9"></path>
+                <path d="m7 14 5-5 5 5"></path>
+                <path d="M4 3h16"></path>
+            </svg>
+        </a>
+    @endauth
     @auth
         @if (auth()->user()->role === 'admin')
             <a class="btn btn--primary" href="{{ route('events.create') }}">Nouvel événement</a>
@@ -62,35 +57,49 @@
                     </article>
                 @endforeach
             </div>
+            <a class="btn events-section__more" href="{{ route('events.index') }}">Voir plus d’événements</a>
         @else
             <p class="empty-state">Aucun événement n’est encore programmé.</p>
         @endif
     </section>
 
-    <div class="card-grid">
-        <article class="card" id="evenements">
-            <div class="card__accent card__accent--orange"></div>
-            <h3 class="card__title">Événements</h3>
-            <p class="card__text">Découvre les prochains rendez-vous culturels, sportifs et festifs.</p>
-            <a class="card__link" href="{{ route('index') }}#evenements">Gérer le calendrier →</a>
-        </article>
+    <section class="quick-access" aria-labelledby="quick-access-title">
+        <div class="section-heading">
+            <div>
+                <p class="eyebrow">Accès rapides</p>
+                <h2 class="section-title" id="quick-access-title">Tout ce qu’il te faut pour le BDE</h2>
+            </div>
+        </div>
 
-        <article class="card" id="participants">
-            <div class="card__accent card__accent--pink"></div>
-            <h3 class="card__title">Participants</h3>
-            <p class="card__text">Retrouve les membres, les équipes et les profils actifs de la communauté étudiante.</p>
+        <div class="card-grid">
+            <article class="card quick-card">
+                <div class="card__accent card__accent--orange"></div>
+                <h3 class="card__title">Le calendrier complet</h3>
+                <p class="card__text">Retrouve tous les événements et ouvre leur fiche pour gérer les participants.</p>
+                <a class="card__link" href="{{ route('events.index') }}">Voir le calendrier →</a>
+            </article>
+
+            <article class="card quick-card" id="participants">
+                <div class="card__accent card__accent--pink"></div>
+                <h3 class="card__title">Les participants</h3>
+                <p class="card__text">Consulte les membres et les profils étudiants inscrits dans la communauté.</p>
+                @auth
+                    <a class="card__link" href="{{ route('participants.index') }}">Voir les participants →</a>
+                @else
+                    <a class="card__link" href="{{ route('auth.login') }}">Se connecter pour consulter →</a>
+                @endauth
+            </article>
+
             @auth
-                <a class="card__link" href="{{ route('participants.index') }}">Voir les listes →</a>
-            @else
-                <a class="card__link" href="{{ route('auth.login') }}">Se connecter pour consulter →</a>
+                @if (auth()->user()->role === 'admin')
+                    <article class="card quick-card">
+                        <div class="card__accent card__accent--violet"></div>
+                        <h3 class="card__title">Piloter le BDE</h3>
+                        <p class="card__text">Accède aux outils d’administration pour organiser les événements et les participants.</p>
+                        <a class="card__link" href="{{ route('admin.dashboard') }}">Ouvrir l’administration →</a>
+                    </article>
+                @endif
             @endauth
-        </article>
-
-        <article class="card" id="communications">
-            <div class="card__accent card__accent--violet"></div>
-            <h3 class="card__title">Communications</h3>
-            <p class="card__text">Reste connecté avec ton BDE et partage les bonnes initiatives.</p>
-            <a class="card__link" href="{{ route('index') }}#communications">Publier une annonce →</a>
-        </article>
-    </div>
+        </div>
+    </section>
 @endsection

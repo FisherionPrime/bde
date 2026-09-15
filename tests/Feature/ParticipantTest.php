@@ -57,4 +57,23 @@ class ParticipantTest extends TestCase
             'class_name' => 'M2 Data',
         ]);
     }
+
+    public function test_authenticated_users_can_export_participants_as_pdf(): void
+    {
+        Student::create([
+            'first_name' => 'Ada',
+            'last_name' => 'Lovelace',
+            'email' => 'ada@example.com',
+            'class_name' => 'B3 Informatique',
+        ]);
+
+        $this->get(route('participants.export'))
+            ->assertRedirect(route('auth.login'));
+
+        $this->actingAs(User::factory()->create(['role' => 'user']))
+            ->get(route('participants.export'))
+            ->assertOk()
+            ->assertHeader('content-type', 'application/pdf')
+            ->assertHeader('content-disposition', 'attachment; filename=participants-bde.pdf');
+    }
 }
