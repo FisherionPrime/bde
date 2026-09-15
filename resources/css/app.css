@@ -13,10 +13,6 @@
     --color-cream: #fcdda9;
 }
 
-/* ==========================================================================
-   Jetons du design system « Modernist » — source de vérité du look du site.
-   ========================================================================== */
-
 :root {
     --font-body: 'Archivo', system-ui, sans-serif;
     --font-heading: 'Archivo', system-ui, sans-serif;
@@ -49,10 +45,6 @@
 
     --transition: 0.26s ease;
 }
-
-/* ==========================================================================
-   Base
-   ========================================================================== */
 
 *,
 *::before,
@@ -123,10 +115,6 @@ a:hover {
     white-space: nowrap;
 }
 
-/* ==========================================================================
-   Marque
-   ========================================================================== */
-
 .brand {
     display: flex;
     align-items: center;
@@ -173,10 +161,6 @@ a:hover {
     letter-spacing: 0.14em;
     text-transform: uppercase;
 }
-
-/* ==========================================================================
-   Boutons
-   ========================================================================== */
 
 .btn {
     display: inline-flex;
@@ -252,10 +236,6 @@ a:hover {
     transition: transform var(--transition);
 }
 
-/* ==========================================================================
-   Formulaires
-   ========================================================================== */
-
 .field {
     margin-bottom: 18px;
 }
@@ -304,10 +284,6 @@ form .field:last-of-type {
     font-weight: 800;
 }
 
-/* ==========================================================================
-   Alertes
-   ========================================================================== */
-
 .alert {
     border: 2px solid var(--brand-coral);
     border-radius: var(--radius-md);
@@ -328,10 +304,6 @@ form .field:last-of-type {
     margin: 0;
     padding-left: 18px;
 }
-
-/* ==========================================================================
-   Cartes
-   ========================================================================== */
 
 .card-grid {
     display: grid;
@@ -389,10 +361,6 @@ form .field:last-of-type {
     font-weight: 700;
 }
 
-/* ==========================================================================
-   Statistiques
-   ========================================================================== */
-
 .stat-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(min(100%, 110px), 1fr));
@@ -427,10 +395,6 @@ form .field:last-of-type {
     font-weight: 600;
     color: var(--color-neutral-700);
 }
-
-/* ==========================================================================
-   Tableaux
-   ========================================================================== */
 
 .table-wrap {
     overflow-x: auto;
@@ -468,10 +432,6 @@ form .field:last-of-type {
 .table tbody tr:hover {
     background: var(--color-neutral-100);
 }
-
-/* ==========================================================================
-   Coquille applicative — barre latérale repliable
-   ========================================================================== */
 
 .app-shell {
     --sidebar-width: 248px;
@@ -683,7 +643,6 @@ form .field:last-of-type {
         transform: translateX(0);
     }
 
-    /* Hors écran, la barre latérale affiche toujours son contenu complet. */
     :root[data-sidebar='closed'] .sidebar__brand,
     :root[data-sidebar='closed'] .sidebar__nav,
     :root[data-sidebar='closed'] .sidebar__footer {
@@ -707,10 +666,6 @@ form .field:last-of-type {
         cursor: pointer;
     }
 }
-
-/* ==========================================================================
-   Coquille d'authentification
-   ========================================================================== */
 
 .auth-page {
     display: flex;

@@ -1,11 +1,3 @@
-/**
- * Barre latérale repliable de la coquille applicative.
- *
- * L'état vit sur `<html data-sidebar>` : un script inline dans le template le
- * positionne avant le premier rendu pour éviter tout clignotement, ce module
- * ne fait que brancher les contrôles.
- */
-
 const STORAGE_KEY = 'bde.sidebar';
 const MOBILE_QUERY = '(max-width: 900px)';
 
@@ -24,7 +16,6 @@ const setSidebarState = (open) => {
         button.setAttribute('title', label);
     });
 
-    /** Sur mobile la barre est un tiroir temporaire : son état ne doit pas devenir la préférence bureau. */
     if (isMobile()) {
         return;
     }
@@ -32,7 +23,6 @@ const setSidebarState = (open) => {
     try {
         window.localStorage.setItem(STORAGE_KEY, open ? 'open' : 'closed');
     } catch (error) {
-        // Stockage indisponible (navigation privée) : l'état reste valable pour la page.
     }
 };
 
