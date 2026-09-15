@@ -390,13 +390,6 @@
     </head>
     <body>
         <div class="page-shell">
-            <header class="topbar">
-                <div class="brand">
-                    <img src="{{ asset('images/logo.png') }}" alt="Logo" class="brand-mark">
-                    <span>Educia BDE</span>
-                </div>
-            </header>
-
             <main class="content-wrap">
                 @yield('contenu')
             </main>
