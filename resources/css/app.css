@@ -698,7 +698,7 @@ form .field:last-of-type {
 .search-form {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 16px;
     margin-bottom: 32px;
 }
 
@@ -773,14 +773,15 @@ form .field:last-of-type {
 }
 
 .table__actions {
-    display: flex;
-    align-items: center;
-    gap: 14px;
     white-space: nowrap;
 }
 
-.table__actions .card__link {
-    margin-top: 0;
+.table__actions form {
+    display: inline;
+}
+
+.table__actions > * + * {
+    margin-left: 14px;
 }
 
 .admin-users {
