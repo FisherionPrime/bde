@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Models\Event;
+use App\Models\Student;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
@@ -33,6 +34,12 @@ class EventTest extends TestCase
     public function test_admin_can_create_an_event(): void
     {
         $admin = User::factory()->create(['role' => 'admin']);
+        $student = Student::create([
+            'first_name' => 'Ada',
+            'last_name' => 'Lovelace',
+            'email' => 'ada@example.com',
+            'class_name' => 'B3 Informatique',
+        ]);
 
         $this->actingAs($admin)
             ->get(route('events.create'))
@@ -49,8 +56,9 @@ class EventTest extends TestCase
                 'name' => 'Soirée de rentrée',
                 'color' => '#f7521c',
                 'event_date' => '2026-10-01',
+                'student_ids' => [$student->id],
             ])
-            ->assertRedirect(route('index'));
+            ->assertRedirect(route('events.show', Event::query()->first()));
 
         $event = Event::query()->first();
 
@@ -58,5 +66,6 @@ class EventTest extends TestCase
         $this->assertSame('Soirée de rentrée', $event->name);
         $this->assertSame('#f7521c', $event->color);
         $this->assertSame('2026-10-01', $event->event_date->format('Y-m-d'));
+        $this->assertTrue($event->students->contains($student));
     }
 }

@@ -58,6 +58,7 @@
                         <div class="card__accent" style="background: {{ $event->color }}"></div>
                         <h3 class="card__title">{{ $event->name }}</h3>
                         <p class="card__text">{{ $event->event_date->translatedFormat('l j F Y') }}</p>
+                        <a class="card__link" href="{{ route('events.show', $event) }}">Voir les participants →</a>
                     </article>
                 @endforeach
             </div>
@@ -78,7 +79,11 @@
             <div class="card__accent card__accent--pink"></div>
             <h3 class="card__title">Participants</h3>
             <p class="card__text">Retrouve les membres, les équipes et les profils actifs de la communauté étudiante.</p>
-            <a class="card__link" href="{{ route('index') }}#participants">Voir les listes →</a>
+            @auth
+                <a class="card__link" href="{{ route('participants.index') }}">Voir les listes →</a>
+            @else
+                <a class="card__link" href="{{ route('auth.login') }}">Se connecter pour consulter →</a>
+            @endauth
         </article>
 
         <article class="card" id="communications">

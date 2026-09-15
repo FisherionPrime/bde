@@ -42,6 +42,18 @@
             <input class="input" id="event_date" name="event_date" type="date" value="{{ old('event_date') }}" required>
         </div>
 
+        <fieldset class="field event-selector">
+            <legend class="field__label">Élèves participants</legend>
+            @forelse ($students as $student)
+                <label class="checkbox-row">
+                    <input type="checkbox" name="student_ids[]" value="{{ $student->id }}" @checked(in_array($student->id, old('student_ids', [])))>
+                    <span>{{ $student->last_name }} {{ $student->first_name }} — {{ $student->class_name }}</span>
+                </label>
+            @empty
+                <p class="form-help">Ajoute d’abord des élèves dans la page Participants.</p>
+            @endforelse
+        </fieldset>
+
         <button class="btn btn--primary" type="submit">Créer l’événement</button>
     </form>
 @endsection

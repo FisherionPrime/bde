@@ -29,7 +29,7 @@
             <div class="card__accent card__accent--pink"></div>
             <h3 class="card__title">Membres</h3>
             <p class="card__text">Consulte les comptes étudiants et attribue les rôles du bureau.</p>
-            <a class="card__link" href="{{ route('index') }}#participants">Voir les listes →</a>
+            <a class="card__link" href="{{ route('participants.index') }}">Gérer les participants →</a>
         </article>
 
         <article class="card">

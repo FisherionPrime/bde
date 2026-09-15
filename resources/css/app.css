@@ -666,7 +666,67 @@ form .field:last-of-type {
     cursor: pointer;
 }
 
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0 18px;
+}
+
+.event-selector {
+    border: 0;
+    padding: 0;
+}
+
+.checkbox-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+    font-size: 0.92rem;
+}
+
+.checkbox-row input {
+    width: 17px;
+    height: 17px;
+    accent-color: var(--brand-fuchsia);
+}
+
+.form-help {
+    color: var(--color-neutral-700);
+    font-size: 0.92rem;
+}
+
+.table__actions {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    white-space: nowrap;
+}
+
+.text-btn {
+    border: 0;
+    padding: 0;
+    background: transparent;
+    color: var(--brand-fuchsia);
+    font: inherit;
+    font-size: 0.9rem;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.text-btn:hover {
+    color: var(--brand-violet);
+}
+
+.text-btn--danger {
+    color: var(--brand-coral);
+}
+
 @media (max-width: 900px) {
+    .form-grid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
     .app-shell {
         grid-template-columns: minmax(0, 1fr);
     }

@@ -51,7 +51,11 @@
                 <nav class="sidebar__nav">
                     <a href="{{ route('index') }}" @class(['is-active' => request()->routeIs('index')])>Accueil</a>
                     <a href="{{ route('index') }}#evenements">Événements</a>
-                    <a href="{{ route('index') }}#participants">Participants</a>
+                    @auth
+                        <a href="{{ route('participants.index') }}" @class(['is-active' => request()->routeIs('participants.*')])>Participants</a>
+                    @else
+                        <a href="{{ route('index') }}#participants">Participants</a>
+                    @endauth
                     <a href="{{ route('index') }}#communications">Communications</a>
 
                     @auth

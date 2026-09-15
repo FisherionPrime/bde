@@ -40,9 +40,21 @@
     <form action="{{ route('auth.register.store') }}" method="POST">
         @csrf
 
+        <div class="form-grid">
+            <div class="field">
+                <label class="field__label" for="first_name">Prénom</label>
+                <input class="input" type="text" id="first_name" name="first_name" value="{{ old('first_name') }}" required autofocus placeholder="Votre prénom">
+            </div>
+
+            <div class="field">
+                <label class="field__label" for="last_name">Nom</label>
+                <input class="input" type="text" id="last_name" name="last_name" value="{{ old('last_name') }}" required placeholder="Votre nom">
+            </div>
+        </div>
+
         <div class="field">
-            <label class="field__label" for="name">Nom complet</label>
-            <input class="input" type="text" id="name" name="name" value="{{ old('name') }}" required autofocus placeholder="Votre nom">
+            <label class="field__label" for="class_name">Classe</label>
+            <input class="input" type="text" id="class_name" name="class_name" value="{{ old('class_name') }}" required placeholder="Ex. B3 Informatique">
         </div>
 
         <div class="field">

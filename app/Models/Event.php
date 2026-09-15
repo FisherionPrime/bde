@@ -18,4 +18,9 @@ class Event extends Model
             'event_date' => 'date',
         ];
     }
+
+    public function students()
+    {
+        return $this->belongsToMany(Student::class);
+    }
 }
