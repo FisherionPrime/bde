@@ -15,7 +15,7 @@
                 margin: 0;
                 min-height: 100%;
                 font-family: Arial, Helvetica, sans-serif;
-                background: #fcdda9;
+                background: #efefef;
                 color: #2f0f43;
             }
 
@@ -56,7 +56,7 @@
                 height: 42px;
                 object-fit: contain;
                 border-radius: 14px;
-                background: #fcdda9;
+                background: #ffffff;
                 color: #4f116f;
                 font-size: 0.9rem;
                 box-shadow: 0 10px 22px rgba(229, 41, 71, 0.22);
@@ -121,7 +121,7 @@
             .auth-visual {
                 position: relative;
                 min-height: 680px;
-                background: linear-gradient(150deg, #fcdda9 0%, #f7521c 35%, #ef3a2f 65%, #e52947 100%);
+                background: #efefef;
                 padding: 52px 34px;
                 color: #2f0f43;
                 display: flex;
@@ -133,7 +133,7 @@
                 content: '';
                 position: absolute;
                 inset: 24px;
-                border: 1px solid rgba(247, 82, 28, 0.38);
+                border: 1px solid rgba(79, 17, 111, 0.2);
                 border-radius: 24px;
             }
 
@@ -146,8 +146,8 @@
                 display: inline-block;
                 padding: 8px 12px;
                 border-radius: 999px;
-                background: #fff6e8;
-                border: 1px solid rgba(247, 82, 28, 0.34);
+                background: #ffffff;
+                border: 1px solid rgba(79, 17, 111, 0.24);
                 color: #4f116f;
                 font-size: 0.8rem;
                 font-weight: 700;
@@ -233,7 +233,7 @@
                 border-radius: 14px;
                 padding: 14px 16px;
                 font-size: 1rem;
-                background: #fff6e8;
+                background: #ffffff;
                 transition: border-color 0.2s ease, box-shadow 0.2s ease;
             }
 
@@ -281,7 +281,7 @@
             }
 
             .alert-box {
-                background: #fff6e8;
+                background: #ffffff;
                 border: 1px solid rgba(229, 41, 71, 0.65);
                 color: #4f116f;
                 border-radius: 14px;

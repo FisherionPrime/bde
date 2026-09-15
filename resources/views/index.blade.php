@@ -11,7 +11,7 @@
         body {
             font-family: Arial, sans-serif;
             margin: 0;
-            background: #fcdda9;
+            background: #efefef;
             color: #2f0f43;
         }
         .dashboard-shell {
@@ -26,7 +26,7 @@
             z-index: 20;
             width: 230px;
             padding: 34px 20px;
-            background: linear-gradient(180deg, #fcdda9 0%, #f7521c 40%, #ef3a2f 100%);
+            background: #ffffff;
             color: #4f116f;
             transform: translateX(-100%);
             transition: transform 0.25s ease;
