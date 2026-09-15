@@ -871,6 +871,61 @@ form .field:last-of-type {
         background: rgb(32 30 29 / 0.28);
         cursor: pointer;
     }
+
+    .admin-users .table-wrap {
+        overflow-x: visible;
+        border: 0;
+        border-radius: 0;
+    }
+
+    .admin-users .table thead {
+        display: none;
+    }
+
+    .admin-users .table,
+    .admin-users .table tbody,
+    .admin-users .table tr,
+    .admin-users .table td {
+        display: block;
+        width: 100%;
+    }
+
+    .admin-users .table tr {
+        border: var(--border);
+        border-radius: var(--radius-lg);
+        padding: 16px 18px;
+        margin-bottom: 14px;
+    }
+
+    .admin-users .table tr:last-child {
+        margin-bottom: 0;
+    }
+
+    .admin-users .table td {
+        padding: 0;
+        border-bottom: 0;
+    }
+
+    .admin-users .table td + td {
+        margin-top: 10px;
+    }
+
+    .admin-users .table td:first-child {
+        font-weight: 700;
+    }
+
+    .admin-users .table td:nth-child(2) {
+        color: var(--color-neutral-700);
+    }
+
+    .user-role-form {
+        min-width: 0;
+        flex-wrap: wrap;
+    }
+
+    .user-role-form .input {
+        flex: 1 1 145px;
+    }
 }
 
 .auth-page {
