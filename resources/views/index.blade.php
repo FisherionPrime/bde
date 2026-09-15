@@ -4,7 +4,11 @@
 
 @section('actions')
     <button class="btn" type="button">Exporter</button>
-    <button class="btn btn--primary" type="button">Nouvel événement</button>
+    @auth
+        @if (auth()->user()->role === 'admin')
+            <a class="btn btn--primary" href="{{ route('events.create') }}">Nouvel événement</a>
+        @endif
+    @endauth
 @endsection
 
 @section('contenu')
@@ -19,6 +23,35 @@
             <span class="page-head__badge">Connecté en tant que {{ auth()->user()->name ?: auth()->user()->email }}</span>
         @endauth
     </div>
+
+    @if (session('success'))
+        <div class="alert alert--success" role="status">{{ session('success') }}</div>
+    @endif
+
+    <section class="events-section" aria-labelledby="events-title">
+        <div class="section-heading">
+            <h2 class="section-title" id="events-title">Prochains événements</h2>
+            @auth
+                @if (auth()->user()->role === 'admin')
+                    <a class="card__link" href="{{ route('events.create') }}">Ajouter un événement →</a>
+                @endif
+            @endauth
+        </div>
+
+        @if ($events->isNotEmpty())
+            <div class="card-grid">
+                @foreach ($events as $event)
+                    <article class="card event-card">
+                        <div class="card__accent" style="background: {{ $event->color }}"></div>
+                        <h3 class="card__title">{{ $event->name }}</h3>
+                        <p class="card__text">{{ $event->event_date->translatedFormat('l j F Y') }}</p>
+                    </article>
+                @endforeach
+            </div>
+        @else
+            <p class="empty-state">Aucun événement n’est encore programmé.</p>
+        @endif
+    </section>
 
     <div class="card-grid">
         <article class="card" id="evenements">

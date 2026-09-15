@@ -1,13 +1,17 @@
 <?php
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\EventController;
+use App\Models\Event;
 use App\Models\User;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('index');
+    return view('index', [
+        'events' => Event::query()->orderBy('event_date')->get(),
+    ]);
 })->name('index');
 
 Route::get('/login', function () {
@@ -28,7 +32,7 @@ Route::post('/login', function (Request $request) {
         'password' => ['required'],
     ]);
 
-    if (!Auth::attempt($request->only('email', 'password'))) {
+    if (! Auth::attempt($request->only('email', 'password'))) {
         return back()->withErrors([
             'email' => 'Email ou mot de passe incorrect.',
         ])->withInput();
@@ -61,6 +65,9 @@ Route::post('/register', function (Request $request) {
 })->name('auth.register.store');
 
 Route::middleware(['auth', 'admin'])->group(function () {
+    Route::get('/evenements/nouveau', [EventController::class, 'create'])->name('events.create');
+    Route::post('/evenements', [EventController::class, 'store'])->name('events.store');
+
     Route::get('/admin', function () {
         return view('admin.dashboard');
     })->name('admin.dashboard');

@@ -6,6 +6,7 @@
 
 @section('actions')
     <a class="btn" href="{{ route('index') }}">Retour au site</a>
+    <a class="btn btn--primary" href="{{ route('events.create') }}">Nouvel événement</a>
 @endsection
 
 @section('contenu')
