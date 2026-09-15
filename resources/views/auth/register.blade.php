@@ -64,7 +64,7 @@
 
         <div class="field">
             <label class="field__label" for="password">Mot de passe</label>
-            <input class="input" type="password" id="password" name="password" required placeholder="Minimum 6 caractères">
+            <input class="input" type="password" id="password" name="password" required placeholder="Minimum 8 caractères">
         </div>
 
         <div class="field">
