@@ -216,7 +216,10 @@
                 <a href="#participants">Participants</a>
                 <a href="#communaute">Communauté</a>
 
-                @if (session('user_id'))
+                @auth
+                    @if (auth()->user()->role === 'admin')
+                        <a href="{{ route('admin.dashboard') }}">Administration</a>
+                    @endif
                     <form action="{{ route('auth.logout') }}" method="POST">
                         @csrf
                         <button type="submit">Déconnexion</button>
@@ -234,8 +237,8 @@
                     Le site d’animation de la vie étudiante : événements, sorties, infos, bons plans
                     et toute la communauté du BDE en un seul endroit.
                 </p>
-                @if (session('user_name') || session('user_email'))
-                    <div class="badge">Connecté en tant que {{ session('user_name') ?: session('user_email') }}</div>
+                @auth
+                    <div class="badge">Connecté en tant que {{ auth()->user()->name ?: auth()->user()->email }}</div>
                 @endif
             </section>
 
