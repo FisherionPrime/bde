@@ -779,6 +779,10 @@ form .field:last-of-type {
     white-space: nowrap;
 }
 
+.table__actions .card__link {
+    margin-top: 0;
+}
+
 .admin-users {
     margin-top: 42px;
 }
