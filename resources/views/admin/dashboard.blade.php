@@ -32,12 +32,6 @@
             <a class="card__link" href="{{ route('participants.index') }}">Gérer les participants →</a>
         </article>
 
-        <article class="card">
-            <div class="card__accent card__accent--violet"></div>
-            <h3 class="card__title">Communications</h3>
-            <p class="card__text">Rédige les annonces diffusées sur l’espace étudiant.</p>
-            <a class="card__link" href="{{ route('index') }}#communications">Publier une annonce →</a>
-        </article>
     </div>
 
     @if (session('success'))
