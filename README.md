@@ -86,7 +86,7 @@ Avant d'installer l'application, assurez-vous de disposer des outils suivants su
 Recuperez les sources du projet sur votre machine locale :
 
 ```bash
-git clone <url-du-depot>
+git clone https://github.com/FisherionPrime/bde.git
 cd bde
 ```
 
@@ -137,19 +137,7 @@ DB_USERNAME=root
 DB_PASSWORD=
 ```
 
-Creez la base de donnees `bde` sur votre serveur MySQL, puis appliquez la structure :
-
-Option A - Via les migrations Laravel :
-```bash
-php artisan migrate
-```
-
-Option B - Via l'import du dump fourni (`bdd.sql`) :
-```bash
-mysql -u root -p bde < bdd.sql
-```
-
----
+Importer le fichier bdd.sql dans votre bdd (comme phpmyadmin)
 
 ## Execution de l'application
 
